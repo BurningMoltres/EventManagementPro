@@ -15,7 +15,7 @@ app.use(express.urlencoded({encoded:true}))
 //mongo connection
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     app.listen(port,(err)=>{
-        console.log("connected to database");
+      
         if(err)
         {
             return err;

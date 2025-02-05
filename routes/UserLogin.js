@@ -8,10 +8,10 @@ require('dotenv').config()
 
 router.post("/",async(req,res,next) => {
     const { username, password, email } = req.body;
-    console.log(req.body);
+   
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    console.log(emailRegex.test(email));
+  
 
     // Validate input
     if (
@@ -45,7 +45,7 @@ router.post("/",async(req,res,next) => {
     }
     catch(error)
     {
-        console.log("error");
+      
         res.status(500).json({message:'login failed'});
     }
 

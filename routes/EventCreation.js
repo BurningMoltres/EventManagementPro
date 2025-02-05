@@ -34,7 +34,6 @@ try{
 }
 catch(error)
 {
-  console.log(error);
   res.status(500).json("Error fetching results");
 }
 
@@ -44,13 +43,11 @@ router.delete("/", async (req, res, next) => {
   const { id } = req.body;
   
   if (!id) {
-    return res.status(400).json({ error: "Id is mandatory" });  // Change 401 to 400 for bad request
+    return res.status(400).json({ error: "Id is mandatory" });  
   }
 
   try {
-    console.log("Type of ID:", typeof id);  // Log the type of id
-    console.log("ID:", id);  // Log the actual ID
-
+   A
     // Find the event by ID and delete it
     const deletedEvent = await Event.findByIdAndDelete(id);
 
@@ -62,7 +59,7 @@ router.delete("/", async (req, res, next) => {
     // Successfully deleted
     res.status(200).json({ message: "Item deleted successfully" });
   } catch (error) {
-    console.log(error);  // Log the error object
+  
     res.status(500).json({ message: "Error deleting event" });
   }
 });
@@ -73,8 +70,7 @@ router.delete("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   const {name, date, time, description, participants } = req.body;
   let newDate=new Date(date);
-  console.log(newDate);
-  console.log(req.body);
+  
   if (typeof name !== 'string' || name.trim().length <= 0) {
     return res.status(400).json({ error: "Name of event cannot be empty" });
   }
@@ -106,7 +102,7 @@ router.post("/", async (req, res, next) => {
     await newEvent.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.log(error);
+
     res.status(500).json({ message: "Error registering user" });
   }
 });
@@ -115,7 +111,7 @@ router.post("/", async (req, res, next) => {
 // PUT: Update an event by ID
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+
   const {name, date, time, description, participants } = req.body;
 //specify new for updated document
   try {
@@ -127,7 +123,7 @@ router.put("/:id", async (req, res) => {
 
     res.status(200).json({ message: 'Event updated successfully', event: updatedEvent });
   } catch (error) {
-    console.error(error);
+
     res.status(500).json({ message: 'Error updating event' });
   }
 });

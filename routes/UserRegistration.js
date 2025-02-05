@@ -8,10 +8,10 @@ const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res, next) => {
   const { username, password, email } = req.body;
-  console.log(req.body);
+
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  console.log(emailRegex.test(email));
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -135,7 +135,6 @@ router.post("/", async (req, res, next) => {
     `, 
       });
 
-      console.log("Message sent: %s", info.messageId);
      
     }
 
@@ -144,7 +143,7 @@ router.post("/", async (req, res, next) => {
     // Send success message
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.error(error); // Log the error for debugging
+   
     res.status(500).json({ message: "Error registering user" });
   }
 });
